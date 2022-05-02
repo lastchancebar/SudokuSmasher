@@ -17,4 +17,18 @@ def Show_Board(board):
                 print("|", end='')
         if (i+1) %  3 == 0:
                 print("\n--------------------", end='')
-        print()                
+        print()  
+
+# This function finds an empty cell in the puzzle
+
+def find_next_empty(board):
+    for i in range(9):
+        for j in range(9):
+            if board[i,j] == 0:
+                row = i
+                vol = j
+                Fill_Chk = 1
+                result = np.array([row,col,Fill_Chk], dtype="int8")
+                return result
+                result = np.array(-1,-1,0])
+                return result
