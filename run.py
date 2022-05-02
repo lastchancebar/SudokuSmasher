@@ -51,13 +51,13 @@ def unsolved_puzzle(board, difficulty):
     count, done = 0, False
     if difficulty == "Easy":
         print("Generating Easy Puzzle...\n\n")
-        upper_limit=35
+        upper_limit = 35
     elif difficulty == "Medium":
         print("Generating puzzle of medium difficulty...\n\n")
-        upper_limit=41 
+        upper_limit = 41 
     else: 
         print("Generating difficult puzzle...\n\n")
-        upper_limit=47
+        upper_limit = 47
     while True:
         i = random.randint(0,8)
         j = random.randint(0,8)  
@@ -69,8 +69,8 @@ def unsolved_puzzle(board, difficulty):
                 if solve_sudoku(board_copy, not_check):
                     board[i,j]= not_check
                     continue 
-                row_start=(i // 3) * 3
-                col_start=(j // 3) * 3
+                row_start =(i // 3) * 3
+                col_start =(j // 3) * 3
                 if difficulty == "Easy":
                     if np.count_nonzero(board[row_start:row_start+3, col_start: col_start+3]) < 5:
                         board[i,j]=not_check
@@ -115,4 +115,46 @@ def play_game(solved_board, unsolved_board):
         print("\nThank you for playing Sudoku Smasher.")
         return
 
+#solve  chosen sudoku puzzle
+# uses backtracking algorithm
 
+def solve_sudoku(board, not_check) :
+    x = find_next_empty(board)
+    if x[2] ==0:
+        return True
+    else:  
+        row = x[0]
+        col = x[1]  
+        for i in np.random.permutation(10):
+            if i != 0 and i != not_check:
+                if check_input_validity(board, row, col, i):
+                    board[row,col]= i
+                    if solve_sudoku(board, not_check):
+                        return True
+                    board[row,col]=0
+    return False
+
+#user inputs difficulty and initializes puzzle board
+
+def main():
+    ch = int(input("Please choose the level of difficulty-\n1.Easy\n2.Medium\n3.Hard\n Your choice(1, 2, or 3):"))
+    if ch ==1: # ch is shorthand for user choice
+        difficulty = "Easy"
+    elif ch == 2:
+        difficulty = "Medium"
+    else:
+        difficulty = "Hard"
+    board = np.zeroes((9, 9), dtype="int8")
+    if solve_sudoku(board, -1):
+        solved_board = board.copy()
+        print("\n\nThe answer to this puzzle is:\n")
+        unsolved_puzzle(board, difficulty)
+        Show_Board(board)
+        unsolved_board=board.copy()
+        play_game(solved_board, unsolved_board)
+    else:
+        print("There is no solution available for this puzzle!")    
+    return
+
+if __name__ == "__main__":
+    main()    
