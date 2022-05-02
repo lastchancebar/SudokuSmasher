@@ -109,5 +109,10 @@ def play_game(solved_board, unsolved_board):
         if np.array_equal(solved_board,unsolved_board):
             print("Congratulations on solving the sudoku!")
             break
+    else:
+        print("\nThe solved puzzle is:") 
+        Show_Board(solved_board)
+        print("\nThank you for playing Sudoku Smasher.")
+        return
 
 
