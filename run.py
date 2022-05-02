@@ -85,5 +85,29 @@ def unsolved_puzzle(board, difficulty):
                 count+=1
         else:
             done=True
-            break        
+            break  
+
+# input row, col, and number to play the game   
+
+def play_game(solved_board, unsolved_board):  
+    while True:
+        row=int(input("Enter row number (1-9):")) - 1         
+        col=int(input("Enter column number (1-9):")) - 1
+        number_check=int(input("Enter number ((1-9 or input 10 to exit):"))
+        if number_check != 10:
+            if unsolved_board[row,col] ==0:
+                print(solved_board[row,col])
+                if solved_board[row,col] ==number_check:
+                    print("Correct! Board Updated:")
+                    unsolved_board[row,col]=number_check
+                    Show_Board(unsolved_board)
+                else:
+                    print("Incorrect! Board Updated:")   
+                    Show_Board(unsolved_board)
+        else:
+            print("Location is already filled!")
+        if np.array_equal(solved_board,unsolved_board):
+            print("Congratulations on solving the sudoku!")
+            break
+
 
