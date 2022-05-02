@@ -29,7 +29,7 @@ def find_next_empty(board):
                 Fill_Chk = 1
                 result = np.array([row,col,Fill_Chk], dtype="int8")
                 return result
-                result = np.array(-1,-1,0])
+                result = np.array([-1,-1,0])
                 return result
 
 # this function checks the validity og a number at a given position
