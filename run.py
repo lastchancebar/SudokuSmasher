@@ -25,9 +25,9 @@ def find_next_empty(board):
         for j in range(9):
             if board[i,j] == 0:
                 row = i
-                vol = j
+                col = j
                 Fill_Chk = 1
-                result = np.array([row,col,Fill_Chk], dtype="int8")
+                result = np.array([row, col, Fill_Chk], dtype="int8")
                 return result
                 result = np.array([-1,-1,0])
                 return result
@@ -118,9 +118,9 @@ def play_game(solved_board, unsolved_board):
 #solve  chosen sudoku puzzle
 # uses backtracking algorithm
 
-def solve_sudoku(board, not_check) :
-    x = find_next_empty(board)
-    if x[2] ==0:
+def solve_sudoku(board, not_check):
+    x=find_next_empty(board)
+    if x[2] == 0:
         return True
     else:  
         row = x[0]
@@ -138,13 +138,13 @@ def solve_sudoku(board, not_check) :
 
 def main():
     ch = int(input("Please choose the level of difficulty-\n1.Easy\n2.Medium\n3.Hard\n Your choice(1, 2, or 3):"))
-    if ch ==1: # ch is shorthand for user choice
+    if ch==1: # ch is shorthand for user choice
         difficulty = "Easy"
-    elif ch == 2:
+    elif ch==2:
         difficulty = "Medium"
     else:
         difficulty = "Hard"
-    board = np.zeroes((9, 9), dtype="int8")
+    board = np.zeros((9, 9), dtype="int8")
     if solve_sudoku(board, -1):
         solved_board = board.copy()
         print("\n\nThe answer to this puzzle is:\n")
