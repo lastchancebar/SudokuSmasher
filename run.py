@@ -1,21 +1,22 @@
 import numpy as np
 import random
 
-#Prints sudoku array in familiar format
+#
+# Prints sudoku array in familiar format
 
 def Show_Board(board):
-    for i in range(9): #i represents row
-        for j in range(9): #j represents column
+    for i in range(9):  # i represents row
+        for j in range(9):  # j represents column
             if j == 0:
                 print("|", end='')
             if j != 8:
-                print(board[i,j], end ='')
+                print(board[i, j], end='')
             else:
-                print(board[i,j], end='') 
-            if (j+1) %  3 == 0:
+                print(board[i, j], end='') 
+            if (j+1) % 3 == 0:
                 print("|", end='')
-        if (i+1) %  3 == 0:
-                print("\n--------------------", end='')
+        if (i+1) % 3 == 0:
+            print("\n--------------------", end='')
         print()  
 
 # This function finds an empty cell in the puzzle
@@ -23,22 +24,22 @@ def Show_Board(board):
 def find_next_empty(board):
     for i in range(9):
         for j in range(9):
-            if board[i,j] == 0:
+            if board[i, j] == 0:
                 row = i
                 col = j
                 Fill_Chk = 1
                 result = np.array([row, col, Fill_Chk], dtype="int8")
                 return result
-                result = np.array([-1,-1,0])
+                result = np.array([-1, -1, 0])
                 return result
 
 # this function checks the validity og a number at a given position
-#according to sudoku rules.
+# according to sudoku rules.
 
-def check_input_validity(board,row,col,num):
-    row_start=(row // 3) * 3
-    col_start=(col // 3) * 3
-    if num in board[:, col] or num in board[row,:]:
+def check_input_validity(board, row, col, num):
+    row_start = (row // 3) * 3
+    col_start = (col // 3) * 3
+    if num in board[:, col] or num in board[row, :]:
         return False
     if num in board[row_start:row_start + 3, col_start: + 3]:
         return False
@@ -59,12 +60,11 @@ def unsolved_puzzle(board, difficulty):
         print("Generating difficult puzzle...\n\n")
         upper_limit = 47
     while True:
-        i = random.randint(0,8)
-        j = random.randint(0,8)  
-        if count <=upper_limit:
-            if board[i,j] != 0:
-                not_check= board[i,j]
-                board[i,j] = 0
+        i = random.randint(0, 8)
+        j = random.r upper_limit:
+        if board[i, j] != 0:
+                not_check = board[i,j]
+                board[i, j] = 0
                 board_copy=board
                 if solve_sudoku(board_copy, not_check):
                     board[i,j]= not_check
