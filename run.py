@@ -63,7 +63,7 @@ def unsolved_puzzle(board, difficulty):
         i = random.randint(0, 8)
         j = random.randint(0, 8) 
         if count <= upper_limit:
-        if board[i, j] != 0:
+            if board[i, j] != 0:
                 not_check = board[i,j]
                 board[i, j] = 0
                 board_copy=board
@@ -121,7 +121,7 @@ def play_game(solved_board, unsolved_board):
 
 def solve_sudoku(board, not_check):
     x=find_next_empty(board)
-    if x[2] == gi0:
+    if x[2] == 0:
         return True
     else:  
         row = x[0]
