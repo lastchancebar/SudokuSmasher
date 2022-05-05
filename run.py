@@ -61,7 +61,8 @@ def unsolved_puzzle(board, difficulty):
         upper_limit = 47
     while True:
         i = random.randint(0, 8)
-        j = random.r upper_limit:
+        j = random.randint(0, 8) 
+        if count <= upper_limit:
         if board[i, j] != 0:
                 not_check = board[i,j]
                 board[i, j] = 0
