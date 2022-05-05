@@ -121,7 +121,7 @@ def play_game(solved_board, unsolved_board):
 
 def solve_sudoku(board, not_check):
     x=find_next_empty(board)
-    if x[2] == 0:
+    if x[2] == None:
         return True
     else:  
         row = x[0]
